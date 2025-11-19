@@ -2,19 +2,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import FloatingShapes from './components/FloatingShapes'
 import Section from './components/Section'
-
-const Button = ({ children, variant = 'primary', className = '', ...props }) => {
-  const base = 'inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
-  const styles = {
-    primary: 'bg-[#6B8C7A] text-white hover:brightness-110 hover:shadow-[0_8px_24px_rgba(107,140,122,0.35)] focus-visible:ring-[#6B8C7A]',
-    secondary: 'bg-transparent text-[#4a4742] hover:text-[#2e2b27] underline underline-offset-4'
-  }
-  return (
-    <button className={`${base} ${styles[variant]} ${className}`} {...props}>
-      {children}
-    </button>
-  )
-}
+import Button from './components/Button'
+import ParallaxHero from './components/ParallaxHero'
+import GalleryStrip from './components/GalleryStrip'
+import TestimonialsCarousel from './components/TestimonialsCarousel'
 
 function Wave({ flip = false, color = '#F5F0E9' }) {
   return (
@@ -27,79 +18,46 @@ function Wave({ flip = false, color = '#F5F0E9' }) {
 export default function App() {
   return (
     <div className="min-h-screen bg-[#F5F0E9] text-[#3d3a35]">
-      {/* Soft background shapes */}
+      {/* Ambient floating shapes */}
       <div className="fixed inset-0 -z-10">
         <FloatingShapes />
       </div>
 
-      {/* HERO */}
-      <header className="relative">
-        <Section id="home" className="pt-28 pb-16">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            {/* Left: Photo placeholder */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-1 md:order-none"
-            >
-              <div className="relative mx-auto aspect-[4/5] max-w-md rounded-[28px] overflow-hidden shadow-xl bg-[url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#F5F0E9] via-transparent to-transparent opacity-70" />
-                <div className="absolute bottom-4 left-4 right-4 text-sm text-[#5a5650] bg-[#F5F0E9]/80 backdrop-blur rounded-full px-4 py-2">
-                  Photo of Monir goes here
-                </div>
-              </div>
-            </motion.div>
+      {/* High-end Parallax Hero */}
+      <ParallaxHero />
 
-            {/* Right: Copy */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[#2f2c27]">
-                Come home to your calm, your worth, your self.
-              </h1>
-              <p className="text-lg text-[#5a5650]">
-                I’m Monir. I guide sensitive, self-aware people through EFT tapping, gentle spiritual coaching, and honest self-inquiry — so your nervous system can exhale and old patterns can finally loosen their grip.
-              </p>
-              <ul className="space-y-2 text-[#524e47]">
-                <li>• Feel steadier and more present in daily life</li>
-                <li>• Release old emotional baggage and self-judgment</li>
-                <li>• Build real self-worth and inner safety</li>
-                <li>• Move forward with what actually matters</li>
-              </ul>
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button onClick={() => document.getElementById('free-call').scrollIntoView({ behavior: 'smooth' })}>
-                  Book a Free Clarity Call
-                </Button>
-                <button onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })} className="text-[#4a4742] hover:text-[#2f2c27] underline underline-offset-4">
-                  Learn more about EFT and my approach
-                </button>
-              </div>
-              <p className="text-sm text-[#6a655e]">A 20-minute online call to explore what you need right now.</p>
-            </motion.div>
+      {/* LOGO MARQUEE */}
+      <Section className="py-10 bg-white">
+        <div className="flex items-center justify-between gap-8 opacity-80">
+          <span className="text-sm text-[#6a655e]">Trusted by humans who want a calmer life</span>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#e8e2d9] to-transparent" />
+          <div className="flex items-center gap-4 text-[#6a655e] text-sm">
+            <span>Gentle • Grounded • Real</span>
           </div>
-        </Section>
-        <Wave />
-      </header>
+        </div>
+      </Section>
 
       {/* IS THIS YOU */}
       <main>
         <Section id="pain" className="bg-white rounded-t-[32px]">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4">Is this you?</h2>
-          <p className="text-[#5a5650] max-w-3xl">You feel deeply. You notice everything. Your brain runs like 30 tabs at once. You’ve read the books and tried to “be positive,” yet the same patterns keep looping. If that’s you, you’re not broken — you’re sensitive in a noisy world.</p>
-          <ul className="grid sm:grid-cols-2 gap-3 mt-8 text-[#524e47]">
-            <li>• You wake up already tense, mind buzzing.</li>
-            <li>• You’re kind to others but hard on yourself.</li>
-            <li>• You swing between overthinking and checking out.</li>
-            <li>• You’ve done lots of self-help but still feel stuck.</li>
-            <li>• Noise, crowds, or messy plans drain you fast.</li>
-            <li>• Part of you knows you’re meant for more peace.</li>
-          </ul>
+          <div className="grid md:grid-cols-2 gap-10 items-start">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4">Is this you?</h2>
+              <p className="text-[#5a5650] max-w-3xl">You feel deeply. You notice everything. Your brain runs like 30 tabs at once. You’ve read the books and tried to “be positive,” yet the same patterns keep looping. If that’s you, you’re not broken — you’re sensitive in a noisy world.</p>
+              <ul className="grid sm:grid-cols-2 gap-3 mt-8 text-[#524e47]">
+                <li>• You wake up already tense, mind buzzing.</li>
+                <li>• You’re kind to others but hard on yourself.</li>
+                <li>• You swing between overthinking and checking out.</li>
+                <li>• You’ve done lots of self-help but still feel stuck.</li>
+                <li>• Noise, crowds, or messy plans drain you fast.</li>
+                <li>• Part of you knows you’re meant for more peace.</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <GalleryStrip />
+              <p className="text-sm text-[#6a655e]">A visual mood of calm natural textures and light.</p>
+            </div>
+          </div>
         </Section>
         <div className="relative"><Wave flip color="#FFFFFF" /></div>
 
@@ -133,8 +91,9 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.05 * i }}
-                className="rounded-3xl bg-white/80 backdrop-blur shadow-sm border border-[#e8e2d9] p-6 flex flex-col"
+                className="group rounded-3xl bg-white/80 backdrop-blur shadow-sm border border-[#e8e2d9] p-6 flex flex-col relative overflow-hidden"
               >
+                <div className="absolute -top-20 right-[-40px] h-48 w-48 rounded-full bg-[#6B8C7A]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h3 className="text-xl font-semibold text-[#2f2c27]">{card.title}</h3>
                 <p className="text-[#5a5650] mt-2 flex-1">{card.desc}</p>
                 <Button className="mt-4 self-start">{card.cta}</Button>
@@ -169,7 +128,10 @@ export default function App() {
         <Section id="about" className="bg-[#F5F0E9]">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <div className="relative mx-auto aspect-square max-w-sm rounded-[28px] overflow-hidden shadow bg-[url('https://images.unsplash.com/photo-1629380321590-3b3f75d66dec?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxjZXJhbWljJTIwcG90dGVyeSUyMGhhbmRtYWRlfGVufDB8MHx8fDE3NjM1MTI1ODN8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80')] bg-cover bg-center" />
+              <div className="relative mx-auto aspect-square max-w-sm rounded-[28px] overflow-hidden shadow">
+                <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop" alt="Portrait placeholder" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F5F0E9]/60 to-transparent" />
+              </div>
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-semibold">About Monir</h2>
@@ -185,10 +147,11 @@ export default function App() {
         </Section>
         <div className="relative"><Wave /></div>
 
-        {/* TESTIMONIALS */}
+        {/* TESTIMONIALS - Carousel + Grid */}
         <Section id="testimonials" className="bg-white">
           <h2 className="text-3xl md:text-4xl font-semibold mb-8">Client words</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <TestimonialsCarousel />
+          <div className="grid md:grid-cols-3 gap-6 mt-6">
             {[
               { name: 'Sofia, 31', quote: 'I feel calm in situations that used to spiral me. I finally sleep.' },
               { name: 'Armin, 38', quote: 'For the first time I felt seen and safe with my emotions.' },
